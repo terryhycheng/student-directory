@@ -134,21 +134,11 @@ def print_students(students, special_letter)
             end
         end
     end
-
-    # loop through the students array
-    # while index < students.length
-    #     student = students[index]
-    #     if student[:name].length < 12
-    #         # then print them out
-    #         puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort, hobbies: #{student[:hobbies]}, born in: #{student[:country_of_birth]})".center(100)
-    #     end
-    #     index += 1
-    # end
 end
 
 def print_footer(students)
     puts "-------------".center(100)
-    puts "Overall, we have #{students.count} great students".center(100)
+    puts "Overall, we have #{students.count} great #{students.count > 1 ? 'students' : 'student'}.".center(100)
 end
 
 special_letter = input_special_letter
