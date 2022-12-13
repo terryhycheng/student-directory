@@ -143,6 +143,8 @@ end
 
 special_letter = input_special_letter
 students = input_students
-print_header(special_letter)
-print_students(students, special_letter)
-print_footer(students)
+if students.count > 0
+    print_header(special_letter)
+    print_students(students, special_letter)
+    print_footer(students)
+end
