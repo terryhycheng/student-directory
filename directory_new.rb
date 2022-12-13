@@ -1,21 +1,56 @@
 def input_students
     puts "Please enter the names of the students"
-    puts "To finish, just hit enter twice"
+    puts "To finish, enter 'stop'"
 
     # create an empty array
     students = []
     # get the first name
     name = gets.chomp
-    # while the name is empty, repeat this code
-    while !name.empty? do
+    # repeat this code
+    loop do
+        # until user enter "stop"
+        break if name == "stop"
+        # check if it is empty
+        if name.empty?
+            name = "Unknown"
+        end
+
         # add the student hash to the array
-        students << { name: name, cohort: :November, country_of_birth: input_country_of_birth(name) , hobbies: input_hobbies(name) }
+        students << { name: name, cohort: input_cohort, country_of_birth: input_country_of_birth(name) , hobbies: input_hobbies(name) }
         puts "Now we have #{students.count} students"
         # get another name from the user
+        puts "Add another student's name or enter 'stop' to finish"
         name = gets.chomp
     end
     # return the array of students
     students
+end
+
+def input_cohort
+    month_table = [
+        "January", "February", "March",
+        "April", "May", "June", "July", 
+        "August", "September", "October",
+        "November", "December"
+    ]
+    
+    # get the cohort
+    puts "Which cohort are you in? (Please type in full month name)"
+    cohort = gets.chomp
+
+    # check if it is empty
+    if cohort.empty?
+        cohort = "Unknown"
+    else
+        # check if input is valid
+        if !month_table.include?(cohort)
+            puts "Invalid month input. Please enter again."
+            cohort = gets.chomp
+        end
+    end
+
+    # if valid input, turn it into symbol
+    cohort == "No input" ? cohort : cohort.to_sym
 end
 
 def input_country_of_birth(name)
