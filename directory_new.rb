@@ -32,15 +32,26 @@ def print_header(special_letter)
 end
 
 def print_students(students, special_letter)
+    index = 0
+    
     if !special_letter.empty?
         students = students.select do |student|
             student[:name][0].downcase == special_letter.downcase
         end
     end
-        
-    students.each_with_index do |student, index|
-        puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    
+    while index < students.length
+        if students[index][:name].length < 12
+            puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort)"
+        end
+        index += 1
     end
+
+    # students.each_with_index do |student, index|
+    #     if student[:name].length < 12
+    #         puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    #     end
+    # end
 end
 
 def print_footer(students)
